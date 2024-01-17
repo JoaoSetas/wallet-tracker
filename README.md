@@ -23,6 +23,9 @@ Start the containers
 docker-compose up -d
 ```
 Now you should see the app in http://localhost:4000/
+
+Check postman docs for api calls
+[text](https://documenter.getpostman.com/view/3256126/2s9YsRbokj)
 # Development
 Checks before commit
 ```BASH
