@@ -21,9 +21,14 @@ defmodule WalletTrackerWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", WalletTrackerWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", WalletTrackerWeb do
+    pipe_through :api
+
+    get "/wallets", WalletController, :index
+    post "/track", WalletController, :track
+    get "/status/:address", WalletController, :status
+    delete "/delete/:address", WalletController, :delete
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:wallet_tracker, :dev_routes) do
