@@ -7,6 +7,7 @@ Keep check of any malicious activity in your wallet.
 
 ```BASH
 git clone git@github.com:JoaoSetas/wallet-tracker.git
+cp .hooks/* .git/hooks/
 ```
 
 ## Configuring .env
@@ -23,6 +24,10 @@ docker-compose up -d
 ```
 Now you should see the app in http://localhost:4000/
 # Development
+Checks before commit
+```BASH
+docker-compose run --rm phoenix sh pre-commit-script
+```
 Get logs
 ```BASH
 docker-compose logs -f
