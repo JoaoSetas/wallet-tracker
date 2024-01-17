@@ -17,6 +17,11 @@ Create the folder `.env` from the `.env.example`
 ```BASH
 docker-compose run --rm phoenix bash -c "echo 'SECRET_KEY_BASE:' & mix phx.gen.secret"
 ```
+
+#### `POSTGRES_PASSWORD` - Generate with:
+```BASH
+openssl rand -hex 16
+```
 ## Running the app
 Start the containers
 ```BASH
@@ -52,7 +57,7 @@ To debug to the console
 ```elixir
 dbg(variable)
 ```
-It needed in the iex this command recompiles any changes 
+If needed in the iex this command recompiles any changes 
 ```elixir
 recompile
 ```
