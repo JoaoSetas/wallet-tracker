@@ -44,6 +44,10 @@ docker-compose exec phoenix iex --sname console --cookie monster --remsh cookie
 ```
 To debug in the iex put this in your code to break 
 ```elixir
+require IEx; IEx.pry
+```
+To debug to the console
+```elixir
 dbg(variable)
 ```
 It needed in the iex this command recompiles any changes 
