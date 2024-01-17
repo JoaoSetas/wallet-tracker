@@ -27,7 +27,7 @@ defmodule WalletTracker.TrackerProcess do
     {:ok, _pid} =
       DynamicSupervisor.start_child(
         WalletTracker.DynamicSupervisor,
-        {WalletTracker.TrackerProcess, {address, registered_name}}
+        {__MODULE__, {address, registered_name}}
       )
 
     registered_name
@@ -162,9 +162,9 @@ defmodule WalletTracker.TrackerProcess do
     if new_balance != balance do
       {:ok, wallet} = Trackers.get_wallet(address)
       Trackers.update_wallet(wallet, %{"balance" => new_balance})
+      # dbg("Balance for #{address} is #{new_balance} (#{diference})")
     end
 
-    # dbg("Balance for #{address} is #{new_balance} (#{diference})")
     schedule_work()
     {:noreply, {address, new_balance, diference, starting_balance}}
   end

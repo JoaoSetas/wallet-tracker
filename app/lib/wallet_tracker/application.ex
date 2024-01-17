@@ -16,7 +16,7 @@ defmodule WalletTracker.Application do
       {Finch, name: WalletTracker.Finch},
       # Start a worker by calling: WalletTracker.Worker.start_link(arg)
       # {WalletTracker.Worker, arg},
-      {DynamicSupervisor, name: WalletTracker.DynamicSupervisor, strategy: :one_for_one},
+      WalletTracker.DynamicSupervisor,
       # Start to serve requests, typically the last entry
       WalletTrackerWeb.Endpoint
     ]
