@@ -1,4 +1,7 @@
 defmodule WalletTracker.Tracker do
+  @moduledoc """
+  This module is responsible for tracking the balance of a wallet.
+  """
   use GenServer
 
   def start_link(address) do
@@ -39,16 +42,14 @@ defmodule WalletTracker.Tracker do
       status_code: 200,
       body: body
     } =
-      HTTPoison.get!(
-        "https://beaconcha.in/api/v1/execution/address/#{address}"
-      )
+      HTTPoison.get!("https://beaconcha.in/api/v1/execution/address/#{address}")
 
     %{
       "data" => %{
         "ether" => balance
       }
     } = Jason.decode!(body)
-      dbg(balance)
+
     String.to_float(balance)
   end
 
