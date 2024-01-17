@@ -7,6 +7,7 @@ Keep check of any malicious activity in your wallet.
 
 ```BASH
 git clone git@github.com:JoaoSetas/wallet-tracker.git
+cp .hooks/* .git/hooks/
 ```
 
 ## Configuring .env
@@ -22,7 +23,13 @@ Start the containers
 docker-compose up -d
 ```
 Now you should see the app in http://localhost:4000/
+
+Check [Postman](https://documenter.getpostman.com/view/3256126/2s9YsRbokj) docs for api calls
 # Development
+Checks before commit
+```BASH
+docker-compose run --rm phoenix sh pre-commit-script
+```
 Get logs
 ```BASH
 docker-compose logs -f
@@ -38,6 +45,10 @@ Connect to the iex with
 docker-compose exec phoenix iex --sname console --cookie monster --remsh cookie
 ```
 To debug in the iex put this in your code to break 
+```elixir
+require IEx; IEx.pry
+```
+To debug to the console
 ```elixir
 dbg(variable)
 ```

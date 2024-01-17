@@ -7,7 +7,7 @@ defmodule WalletTrackerWeb.Router do
     plug :fetch_live_flash
     plug :put_root_layout, html: {WalletTrackerWeb.Layouts, :root}
     plug :protect_from_forgery
-    plug :put_secure_browser_headers
+    plug :put_secure_browser_headers, %{"content-security-policy" => "default-src 'self'"}
   end
 
   pipeline :api do
@@ -21,9 +21,14 @@ defmodule WalletTrackerWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", WalletTrackerWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", WalletTrackerWeb do
+    pipe_through :api
+
+    get "/wallets", WalletController, :index
+    post "/track", WalletController, :track
+    get "/status/:address", WalletController, :status
+    delete "/delete/:address", WalletController, :delete
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:wallet_tracker, :dev_routes) do
