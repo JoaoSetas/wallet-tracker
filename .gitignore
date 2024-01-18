@@ -1,0 +1,5 @@
+# .env
+.env
+
+# Ignore git error logs
+git-commit.error.log
