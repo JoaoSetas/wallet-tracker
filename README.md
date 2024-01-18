@@ -1,7 +1,6 @@
 # Wallet Tracker
 
-This service is a wallet tracker that allows you to track your expenses and incomes.
-Keep check of any malicious activity in your wallet.
+This service allows you to track your wallet balance and diference since tracking started
 
 ## Clone the repo
 
@@ -15,9 +14,8 @@ Create the folder `.env` from the `.env.example`
 
 #### `SECRET_KEY_BASE` - Generate with:
 ```BASH
-docker-compose run --rm phoenix bash -c "echo 'SECRET_KEY_BASE:' & mix phx.gen.secret"
+openssl rand -hex 64
 ```
-
 #### `POSTGRES_PASSWORD` - Generate with:
 ```BASH
 openssl rand -hex 16
@@ -27,7 +25,7 @@ Start the containers
 ```BASH
 docker-compose up -d
 ```
-Now you should see the app in http://localhost:4000/
+After the compilation you should see the app in http://localhost:4000/
 
 Check [Postman](https://documenter.getpostman.com/view/3256126/2s9YsRbokj) docs for api calls
 # Development
